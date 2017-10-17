@@ -60,7 +60,7 @@ def texecute(func, iterable, *args, **kwargs):
     __execute(func, iterable, THREAD, *args, **kwargs)
 
 
-def __execute(func, iterable, executor=PROCESS, *args, **kwargs):
+def __execute(func, iterable, executor, *args, **kwargs):
     with executor() as e:
         futures = list(e.submit(func, elem, *args, **kwargs) for elem in iterable)
         concurrent.futures.wait(futures)
